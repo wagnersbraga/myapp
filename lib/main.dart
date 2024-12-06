@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Dále driver helper',
+      title: '', // Removed title from MaterialApp
       theme: ThemeData.dark(), // Dark theme
-      home: MyHomePage(title: 'Dále driver helper'),
+      home: const MyHomePage(title: 'Dále driver helper'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({super.key, required this.title});
 
   final String title;
 
@@ -43,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(''), //Removed title from AppBar
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -52,13 +54,13 @@ class _MyHomePageState extends State<MyHomePage> {
             Center(
               child: Text(
                 widget.title,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: Colors.white), // Increased font size and added styling
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextFormField(
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(labelText: 'Ganancias por km (ARS)'),
+              decoration: const InputDecoration(labelText: 'Ganancias por km (ARS)'),
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Por favor, ingrese un valor';
@@ -71,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             TextFormField(
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(labelText: 'Ganancias por hora (ARS)'),
+              decoration: const InputDecoration(labelText: 'Ganancias por hora (ARS)'),
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Por favor, ingrese un valor';
@@ -83,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             SwitchListTile(
-              title: Text('Ativar'),
+              title: const Text('Ativar'),
               value: _appEnabled,
               onChanged: (value) {
                 setState(() {
@@ -96,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
                 children: [
                   TextFormField(
-                    decoration: InputDecoration(labelText: 'Texto da notificação'),
+                    decoration: const InputDecoration(labelText: 'Texto da notificação'),
                     onChanged: (value) {
                       setState(() {
                         _notificationText = value;
@@ -114,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         _calculateResults();
                       }
                     },
-                    child: Text('Calcular'),
+                    child: const Text('Calcular'),
                   ),
                   Text(
                     'Costo por km: ${_tripCostPerKm.toStringAsFixed(2)} ARS',
